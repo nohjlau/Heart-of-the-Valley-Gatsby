@@ -10,6 +10,9 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Mapbox from "./mapbox"
+import Sidebar from "./sidebar"
+import Search from "./search"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -29,16 +32,28 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          height: `100%`
         }}
       >
+
+        <div style={{height: '100%', width: `100%`, overflow: `hidden`, paddingTop: `50px`}}>
+          <div style={{height: `100%`, width: `30%`, float: `left`, borderRight: `1px solid rgba(0, 0, 0, 0.25)`}}>
+            <Search />
+            <Sidebar />
+          </div>
+          <div style={{height: `100%`, width: `70%`, float: `right`}}>
+            <Mapbox />
+          </div>
+        </div>
+
+
         <main>{children}</main>
-        <footer>
+        
+        {/* <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        </footer> */}
       </div>
     </>
   )
