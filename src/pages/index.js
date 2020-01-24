@@ -10,7 +10,6 @@ const IndexPage = () => (
       style={{
         height: "100%",
         width: `100%`,
-        overflow: `hidden`,
         paddingTop: `50px`,
       }}
     >

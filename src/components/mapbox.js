@@ -1,6 +1,6 @@
 import React from 'react'
 import mapboxgl from "mapbox-gl"
-import art from "../../content/art.json"
+import art from "../data/art.json"
 import { Link } from "gatsby"
 
 class Mapbox extends React.Component {
