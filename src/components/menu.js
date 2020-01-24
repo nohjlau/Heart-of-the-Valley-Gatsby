@@ -13,7 +13,7 @@ const Menu = () => (
 
 const ListLink = props => (
   <li style={{ display: `inline-block`, marginRight: `1rem`}}>
-    <Link style={{ textDecoration: `none` }} class={`nav`} to={props.to}>{props.children}</Link>
+    <Link className={`nav`} style={{ textDecoration: `none` }} to={props.to}>{props.children}</Link>
   </li>
 )
 

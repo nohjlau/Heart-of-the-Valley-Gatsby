@@ -1,5 +1,7 @@
 import React from 'react'
 import mapboxgl from "mapbox-gl"
+import art from "../../content/art.json"
+import { Link } from "gatsby"
 
 class Mapbox extends React.Component {
   mapboxMapArtwork() {
@@ -14,6 +16,31 @@ class Mapbox extends React.Component {
       keyboard: true
     })
 
+    // TODO: addFeaturesToMap();
+
+    // Add data to map
+    map.on("load", function(e) {
+      map.addSource("places", {
+        type: "geojson",
+        data: art
+      }); 
+      if (art && art.features && art.features.length > 0) {
+        for(let i = 0; i < art.features.length; i++) {
+          let feature = art.features[i];
+          if(!feature.geometry || !feature.geometry.coordinates) {
+            console.warn(
+              `Missing coordinates for listing: "${feature.properties.title}"`
+            );
+          }
+          // let props = feature.properties;
+        }
+      } else {
+        console.log("error");
+        // const notice = document.createElement("div");
+        // notice.innerText = "No artworks found.";
+        // document.getElementById("listings").appendChild(notice);
+      }
+    });
   }
 
   componentDidMount() {

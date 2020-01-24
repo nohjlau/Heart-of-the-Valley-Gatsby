@@ -18,7 +18,7 @@ const Header = ({ siteTitle }) => (
     >
       
       <Menu />
-      <span style={{ margin: 0, fontSize: `1.0rem`, textTransform: `uppercase`, fontFamily: `Raleway, sans-serif` }}>
+      <span style={{ margin: 0, fontSize: `1.3rem`, textTransform: `uppercase`, fontFamily: `Raleway, sans-serif` }}>
         <Link
           to="/"
           style={{
