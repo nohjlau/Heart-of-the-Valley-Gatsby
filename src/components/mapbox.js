@@ -1,7 +1,7 @@
 import React from 'react'
 import mapboxgl from "mapbox-gl"
 import art from "../data/art.json"
-import { Link } from "gatsby"
+import { Link, StaticQuery } from "gatsby"
 
 class Mapbox extends React.Component {
   mapboxMapArtwork() {
@@ -31,17 +31,28 @@ class Mapbox extends React.Component {
             console.warn(
               `Missing coordinates for listing: "${feature.properties.title}"`
             );
+          } else { // Add markers
+            let el = document.createElement("div");
+            el.id = "marker-" + feature.title;
+            el.className= "marker";
+            // el.setAttribute("style","width: 1px;height: 1px;border-radius: 50%;border:1px solid gray;background-color:lightblue");
+            console.log(el.id);
+            try {
+              new mapboxgl.Marker(el)
+                .setLngLat(feature.geometry.coordinates)
+                .addTo(map);
+            } catch (exception) {
+              console.error(exception);
+            }
           }
-          // let props = feature.properties;
         }
       } else {
-        console.log("error");
-        // const notice = document.createElement("div");
-        // notice.innerText = "No artworks found.";
-        // document.getElementById("listings").appendChild(notice);
+        console.log("No artworks found!");
       }
     });
+
   }
+
 
   componentDidMount() {
     const MAPBOX_API_TOKEN = "pk.eyJ1IjoieWNob3kiLCJhIjoiY2pmOTYwdzZ5MG52dDJ3b2JycXY4ZDU5ciJ9.m9H_Mqu1b42AObg_u_tjpA"
@@ -54,6 +65,7 @@ class Mapbox extends React.Component {
         <div id={'map'} style={{height: `100%`, width: `100%`, margin: `0px`}}/>
     )
   }
+
 }
 
 export default Mapbox
