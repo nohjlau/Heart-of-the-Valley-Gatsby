@@ -1,7 +1,7 @@
 import Layout from "../components/layout"
-import Search from "../components/search"
-import Sidebar from "../components/sidebar"
-import Mapbox from "../components/mapbox"
+import Search from "../components/sidebar/search"
+import Sidebar from "../components/sidebar/sidebar"
+import Mapbox from "../components/mapbox/mapbox"
 import React from "react"
 
 const IndexPage = () => (
