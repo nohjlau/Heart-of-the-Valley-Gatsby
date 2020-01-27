@@ -1,5 +1,4 @@
 import Layout from "../components/layout"
-import Search from "../components/sidebar/search"
 import Sidebar from "../components/sidebar/sidebar"
 import Mapbox from "../components/mapbox/mapbox"
 import React from "react"
@@ -21,7 +20,6 @@ const IndexPage = () => (
           borderRight: `1px solid rgba(0, 0, 0, 0.25)`,
         }}
       >
-        <Search />
         <Sidebar />
       </div>
       <div style={{ height: `100%`, width: `70%`, float: `right` }}>

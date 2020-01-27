@@ -20,15 +20,7 @@ class Mapbox extends React.Component {
       keyboard: true,
     })
 
-    // Add data to map
-    // This will let you use the .remove() function later on
-    if (!("remove" in Element.prototype)) {
-      Element.prototype.remove = function() {
-        if (this.parentNode) {
-          this.parentNode.removeChild(this);
-        }
-      };
-    }
+    this.registerRemove();
 
     map.on("load", function(e) {
       map.addSource("places", {
@@ -53,34 +45,37 @@ class Mapbox extends React.Component {
                 .setLngLat(feature.geometry.coordinates)
                 .addTo(map)
 
-              // Add eventlistener
               el.addEventListener("click", e => {
                 map.flyTo({
                   center: feature.geometry.coordinates,
                   zoom: 15,
                 })
-              var popUps = document.getElementsByClassName("mapboxgl-popup")
-              if (popUps[0]) 
-                popUps[0].remove()
+              // var popUps = document.getElementsByClassName("mapboxgl-popup")
+              // if (popUps[0]) 
+              //   popUps[0].remove()
 
+              // TODO
               // if (typeof linkId !== "undefined") {
               //   setTimeout(() => {
               //     window.location.hash = "#" + linkId
               //   }, 250)
               // }
-              if(DEBUG)
-                console.log("showing popup for ", feature.properties.title)
 
+              // if(process.env.NODE_ENV == "development")
+              //   console.log("showing popup for ", feature.properties.title)
 
-              var up = new mapboxgl.Popup({ closeOnClick: false })
-                .setLngLat(feature.geometry.coordinates)
-                .setHTML(
-                  "<h3>" +
-                    feature.properties.title +
-                  "</h3>"
-                )
-                .addTo(map)
+              // var popupHTML = 
+              //   `
+              //   <h3>${feature.properties.title}</h3>
+              //   <p>by ${feature.properties.artist}</p>
+              //   `
+
+              // var up = new mapboxgl.Popup({ closeOnClick: false })
+              //   .setLngLat(feature.geometry.coordinates)
+              //   .setHTML(popupHTML)
+              //   .addTo(map)
               })
+              
             } catch (exception) {
               console.error(exception)
             }
@@ -90,6 +85,17 @@ class Mapbox extends React.Component {
         console.log("No artworks found!")
       }
     })
+  }
+
+  registerRemove() { 
+    // Define remove if it's undefined
+    if (!("remove" in Element.prototype)) {
+      Element.prototype.remove = function() {
+        if (this.parentNode) {
+          this.parentNode.removeChild(this);
+        }
+      };
+    }
   }
 
   componentDidMount() {

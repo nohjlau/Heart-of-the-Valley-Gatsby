@@ -34,8 +34,10 @@ const Sidebar = () => (
 
 function getArtData(data) {
     const artDataArray = [];
-    // console.log(data.allDataJson.edges[0].node.features[0].properties.title);
-    data.allDataJson.edges[0].node.features.forEach(d => (
+    if(process.env.NODE_ENV) {
+      console.log("Checking first art entry: " + data.allDataJson.edges[0].node.features[0].properties.title);
+    }
+      data.allDataJson.edges[0].node.features.forEach(d => (
         artDataArray.push(<Listing key={d.properties.title + Math.random()*100} title={d.properties.title} author={d.properties.artist} address={d.properties.address} image={d.properties.image}/>)
     ))
     return artDataArray;
