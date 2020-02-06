@@ -16,6 +16,11 @@ const Sidebar = () => (
                     image
                     address
                     artist
+                    description
+                  }
+                  id
+                  geometry {
+                    coordinates
                   }
                 }
               }
@@ -35,10 +40,19 @@ const Sidebar = () => (
 function getArtData(data) {
     const artDataArray = [];
     if(process.env.NODE_ENV) {
-      console.log("Checking first art entry: " + data.allDataJson.edges[0].node.features[0].properties.title);
+      console.log("TEST: Get first listing: " + data.allDataJson.edges[0].node.features[0].properties.title);
+      console.log("TEST Get first ID: " + data.allDataJson.edges[0].node.features[0].id);
     }
       data.allDataJson.edges[0].node.features.forEach(d => (
-        artDataArray.push(<Listing key={d.properties.title + Math.random()*100} title={d.properties.title} author={d.properties.artist} address={d.properties.address} image={d.properties.image}/>)
+        artDataArray.push(<Listing 
+          key={d.properties.title + Math.random()*100}
+          title={d.properties.title}
+          author={d.properties.artist}
+          address={d.properties.address}
+          description={d.properties.description}
+          image={d.properties.image} id={d.id}
+          coordinates={d.geometry.coordinates}/>
+        )
     ))
     return artDataArray;
 }
