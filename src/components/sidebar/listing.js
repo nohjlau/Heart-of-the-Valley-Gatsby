@@ -14,9 +14,10 @@ const Listing = (props) => (
       <img style={{objectFit: `cover`, minWidth: `75px`, maxWidth: `75px`, height: `75px`, margin: `0`, overflow: `hidden`, border: `1px solid rgba(0, 0, 0, 0.25)`, borderRadius: `50%`}} alt="icon" src={props.image}/>
     </div>
 
-    <div className="description" style={{backgroundColor: `lightgray`, clear: `both`, textAlign: `justify`, display: `none`}}>
-      <img style={{width: `100%`, border: `1px solid rgba(0, 0, 0, 0.25)`}} alt="full image" src={props.image} />
-      <div style={{padding: `0rem 1rem 1rem 1rem`}}>{props.description}</div>
+    <div className="description" style={{backgroundColor: `lightgray`, clear: `both`, textAlign: `justify`, display: `none`, padding: `1rem 1rem 1rem 1rem`}}>
+      {/* <img style={{width: `100%`, border: `1px solid rgba(0, 0, 0, 0.25)`}} alt="full image" src={props.image} /> */}
+      <img style={{objectFit: `cover`, minWidth: `50%`, maxWidth: `50%`, overflow: `hidden`, float: `left`, padding: `0rem 1rem 0rem 0rem`, marginBottom: `0.33rem`}} src={props.image}/>
+      <div>{props.description}</div>
     </div>
   </div>
   </>
