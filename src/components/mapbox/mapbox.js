@@ -46,34 +46,20 @@ class Mapbox extends React.Component {
                 .addTo(map)
 
               el.addEventListener("click", e => {
+                document.getElementById(feature.id).getElementsByClassName("description")[0].style.display = "block";
+
                 map.flyTo({
                   center: feature.geometry.coordinates,
                   zoom: 15,
                 })
-              // var popUps = document.getElementsByClassName("mapboxgl-popup")
-              // if (popUps[0]) 
-              //   popUps[0].remove()
-
-              // TODO
-              // if (typeof linkId !== "undefined") {
-              //   setTimeout(() => {
-              //     window.location.hash = "#" + linkId
-              //   }, 250)
-              // }
-
-              // if(process.env.NODE_ENV == "development")
-              //   console.log("showing popup for ", feature.properties.title)
-
-              // var popupHTML = 
-              //   `
-              //   <h3>${feature.properties.title}</h3>
-              //   <p>by ${feature.properties.artist}</p>
-              //   `
-
-              // var up = new mapboxgl.Popup({ closeOnClick: false })
-              //   .setLngLat(feature.geometry.coordinates)
-              //   .setHTML(popupHTML)
-              //   .addTo(map)
+                
+                // Jump to the selected sidebar listing
+                if (typeof feature.id !== "undefined") {
+                  setTimeout(() => { window.location.hash = "#" + feature.id; }, 250);
+                }
+                console.log(map);
+                e.stopPropagation();
+                e.preventDefault();
               })
               
             } catch (exception) {
